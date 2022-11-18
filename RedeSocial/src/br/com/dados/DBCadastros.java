@@ -22,4 +22,21 @@ public class DBCadastros {
         this.todosCadastro.add(cadastro);
     }
 
+    
+    public Cadastro getCadastrobyFKUsuario(String idUsuario){
+
+        Cadastro cad = null;
+        
+        for (Cadastro cadastro : todosCadastro) {
+            if (idUsuario.equals(cadastro.getFKusuario())) {
+                cad = cadastro;
+            }
+            
+        }
+
+        return cad;
+
+        
+    }
+
 }

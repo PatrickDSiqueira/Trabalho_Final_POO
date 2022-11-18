@@ -9,6 +9,11 @@ public class Cadastro {
     private String sexo;
     private String FKusuario;
 
+    public String getFKusuario() {
+        return FKusuario;
+    }
+
+
     public Cadastro(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento,
             String sexo, String FKusuario) {
         this.idCadastro = idCadastro;
@@ -19,6 +24,7 @@ public class Cadastro {
         this.sexo = sexo;
         this.FKusuario = FKusuario;
     }
+
 
     public void setIdCadastro(String idCadastro) {
         this.idCadastro = idCadastro;
