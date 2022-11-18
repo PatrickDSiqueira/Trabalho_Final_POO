@@ -19,6 +19,8 @@ public class App {
 
     public static void main(String[] args) {
 
+        setarUsuariosTeste();
+
         String opcao = "";
 
         do {
@@ -45,6 +47,54 @@ public class App {
 
         } while (!opcao.equals("0"));
 
+    }
+
+    private static void setarUsuariosTeste() {
+
+        String idUsuario = Integer.toString(aleatorio.nextInt(100));
+        Usuario usuario = new Usuario(idUsuario, "teste@gmail.com", "123");
+
+        String fKUsuario = usuario.getId();
+
+        Cadastro cadastro = new Cadastro(Integer.toString(aleatorio.nextInt(100)),
+                "joao",
+                "Marcelo",
+                "190",
+                "08/07/2001",
+                "Masculino",
+                fKUsuario);
+        dbCadastros.setTodosCadastro(cadastro);
+        dbUsuarios.setTodosUsuarios(usuario);
+
+        idUsuario = Integer.toString(aleatorio.nextInt(100));
+        usuario = new Usuario(idUsuario, "teste@gmail.com", "123");
+
+        fKUsuario = usuario.getId();
+
+        cadastro = new Cadastro(Integer.toString(aleatorio.nextInt(100)),
+                "Paulo",
+                "Marcelo",
+                "190",
+                "08/07/2001",
+                "Masculino",
+                fKUsuario);
+        dbCadastros.setTodosCadastro(cadastro);
+        dbUsuarios.setTodosUsuarios(usuario);
+
+        idUsuario = Integer.toString(aleatorio.nextInt(100));
+        usuario = new Usuario(idUsuario, "teste@gmail.com", "123");
+
+        fKUsuario = usuario.getId();
+
+        cadastro = new Cadastro(Integer.toString(aleatorio.nextInt(100)),
+                "Marlon",
+                "Marcelo",
+                "190",
+                "08/07/2001",
+                "Masculino",
+                fKUsuario);
+        dbCadastros.setTodosCadastro(cadastro);
+        dbUsuarios.setTodosUsuarios(usuario);
     }
 
     private static void logar() {
@@ -81,6 +131,70 @@ public class App {
 
             switch (opcao) {
                 case "1":
+                    criarAmizade();
+
+                    break;
+                case "2":
+                    // consultar Amigos
+                    System.out.println(usuarioLogado.verAmigos(dbCadastros));
+
+                    break;
+
+                case "3":
+                    System.out.println(usuarioLogado.verAmigos(dbCadastros));
+                    System.out.println("Qual amigo vc deseja excluir");
+                    int indexAmigo = ler.nextInt();
+                    if (indexAmigo <= usuarioLogado.getListaAmigos().size()) {
+                        usuarioLogado.excluirAmigos(
+                                dbUsuarios.getUsuariobyID(usuarioLogado.getListaAmigos().get(indexAmigo).getId()));
+                    } else {
+                        System.out.println("opcao invalida");
+                    }
+
+                    break;
+
+                case "0":
+                    usuarioLogado = null;
+                    System.out.println("logout realizado");
+                    break;
+
+                default:
+                    System.out.println("opcao invalida");
+                    break;
+            }
+
+        } while (!opcao.equals("0"));
+    }
+
+    private static void criarAmizade() {
+        String opcao = "";
+        do {
+            System.out.println(
+                    "1 - ver todos os amigos \n 2 - Digitar email do amigo \n 0 - voltar ao menu alterior \n ->");
+            opcao = ler.nextLine();
+
+            switch (opcao) {
+
+                case "1":
+                String ListaUsuarios = "";
+
+                    for (int i = 0; i < dbUsuarios.size(); i++) {
+                        
+
+                        ListaUsuarios += i + " - " + dbCadastros.getCadastrobyFKUsuario(dbUsuarios.getTodosUsuarios().get(i).getId()).getNome() + "\n";
+
+                    }
+                    System.out.println(ListaUsuarios);
+                    System.out.println("digite a opcao para adicionar ");
+                    int escolha = ler.nextInt();
+
+                    usuarioLogado.setListaAmigos(dbUsuarios.todosUsuarios.get(escolha));
+
+                    System.out.println("Amigo cadastrado");
+
+
+                    break;
+                case "2":
                     System.out.println("Escreva o email do usuario");
                     String email = ler.nextLine();
 
@@ -93,32 +207,16 @@ public class App {
                     }
 
                     break;
-                case "2":
-                    // consultar Amigos
-                    System.out.println(usuarioLogado.verAmigos());
+                case "":
 
-                    break;
-
-                case "3":
-                System.out.println(usuarioLogado.verAmigos());
-                System.out.println("Qual amigo vc deseja excluir");
-                int indexAmigo = ler.nextInt();
-
-
-
-
-                    break;
-
-                case "0":
-                    System.out.println("logout realizado");
                     break;
 
                 default:
-                    System.out.println("opcao invalida");
                     break;
             }
 
         } while (!opcao.equals("0"));
+
     }
 
     private static void criarCadastro() {
@@ -151,7 +249,7 @@ public class App {
 
         Cadastro cadastro = new Cadastro(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, fKUsuario);
         dbCadastros.setTodosCadastro(cadastro);
-        
+
         dbUsuarios.setTodosUsuarios(usuario);
 
         System.out.println("Cadastro realizado");

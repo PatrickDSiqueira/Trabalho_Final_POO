@@ -8,6 +8,10 @@ public class DBUsuarios {
 
     public ArrayList<Usuario> todosUsuarios = new ArrayList<Usuario>();
 
+    public int size(){
+        return todosUsuarios.size();
+    }
+
     public ArrayList<Usuario> getTodosUsuarios() {
         return todosUsuarios;
     }
@@ -21,6 +25,24 @@ public class DBUsuarios {
         for (int i = 0; i < listaUsuarios.size(); i++) {
 
             if (listaUsuarios.get(i).getEmail().equalsIgnoreCase(email)) {
+
+                user = listaUsuarios.get(i);
+
+            }
+        }
+
+        return user;
+    }
+
+    public Usuario getUsuariobyID(String id) {
+
+        ArrayList<Usuario> listaUsuarios = getTodosUsuarios();
+
+        Usuario user = null;
+
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+
+            if (listaUsuarios.get(i).getId().equals(id)) {
 
                 user = listaUsuarios.get(i);
 

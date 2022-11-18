@@ -6,11 +6,34 @@ public class Mensagem {
     private String conteudo;
     private Date dataHoraEnvio;
     private String autor;
-    private String destinatatio;
 
     public Mensagem(String conteudo, Date dataHoraEnvio, String autor) {
         this.conteudo = conteudo;
         this.dataHoraEnvio = dataHoraEnvio;
+        this.autor = autor;
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public Date getDataHoraEnvio() {
+        return dataHoraEnvio;
+    }
+
+    public void setDataHoraEnvio(Date dataHoraEnvio) {
+        this.dataHoraEnvio = dataHoraEnvio;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 }

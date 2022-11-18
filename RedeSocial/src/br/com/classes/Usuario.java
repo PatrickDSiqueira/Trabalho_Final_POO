@@ -13,6 +13,8 @@ public class Usuario {
 
     private ArrayList<Usuario> listaAmigos = new ArrayList<Usuario>();
 
+    private ArrayList<Chat> listaChat = new ArrayList<Chat>();
+
 
     // private ArrayList<Solicitacao> solicitacoes = new ArrayList<Amigo>();
     // private ArrayList<Amigo> listaAmigos = new ArrayList<Amigo>();
@@ -34,12 +36,12 @@ public class Usuario {
 
     }
 
-    public String verAmigos() {
+    public String verAmigos(DBCadastros listaCadastros) {
 
         String listatoString = "";
 
         for (int i = 0; i < listaAmigos.size(); i++) {
-            listatoString += i + 
+            listatoString += i + " - " +listaCadastros.getCadastrobyFKUsuario(this.listaAmigos.get(i).getId()).getNome() +" \n";
             
         }
         return listatoString;

@@ -12,31 +12,31 @@ public class DBCadastros {
         return todosCadastro;
     }
 
-    public void mostrarTodosCadastros(){
+    public void mostrarTodosCadastros() {
         for (Cadastro user : getTodosCadastro()) {
             System.out.println(user.toString());
-        } 
+        }
     }
 
     public void setTodosCadastro(Cadastro cadastro) {
         this.todosCadastro.add(cadastro);
     }
 
-    
     public Cadastro getCadastrobyFKUsuario(String idUsuario){
 
         Cadastro cad = null;
         
-        for (Cadastro cadastro : todosCadastro) {
-            if (idUsuario.equals(cadastro.getFKusuario())) {
-                cad = cadastro;
-            }
-            
-        }
-
-        return cad;
-
-        
+for (int i = 0; i < getTodosCadastro().size(); i++) {
+    if (idUsuario.equals(getTodosCadastro().get(i).getFKusuario())) {
+        cad= getTodosCadastro().get(i);
     }
+    
+}
+            
+        
+
+    return cad;
+
+}
 
 }
