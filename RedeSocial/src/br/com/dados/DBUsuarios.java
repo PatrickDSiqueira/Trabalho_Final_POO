@@ -2,7 +2,6 @@ package br.com.dados;
 
 import java.util.ArrayList;
 
-import br.com.classes.Cadastro;
 import br.com.classes.Usuario;
 
 public class DBUsuarios {

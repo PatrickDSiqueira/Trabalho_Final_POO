@@ -15,13 +15,14 @@ public class App {
     static DBUsuarios dbUsuarios = new DBUsuarios();
     static Scanner ler = new Scanner(System.in);
     static Random aleatorio = new Random();
+    static Usuario usuarioLogado = null; 
 
     public static void main(String[] args) {
 
         String opcao = "";
 
         do {
-            System.out.println("Digite uma opção\n 1-criar conta\n 2- Logar\n 3- Sair \n --> ");
+            System.out.println("Digite uma opção\n 1-criar conta\n 2- Logar\n 3- Encerrar Programa \n --> ");
             opcao = ler.nextLine();
 
             switch (opcao) {
@@ -30,6 +31,7 @@ public class App {
 
                     break;
                 case "2":
+                    logar();
 
                     break;
 
@@ -39,6 +41,30 @@ public class App {
 
         } while (!opcao.equals("0"));
 
+    }
+
+    private static void logar() {
+
+        System.out.print("email : ");
+        String email = ler.nextLine();
+
+        System.out.println("senha : ");
+        String senha = ler.nextLine();
+
+
+        if (dbUsuarios.checkEmailCadastrado(email)) {
+            
+          if(  senha.equals(dbUsuarios.getUsuariobyEmail(email).getSenha())){
+            System.out.println("usuario logado");
+          }else {
+            System.out.println("Senha errada");
+          }
+
+            
+        } else {
+            System.out.println("Email não cadastrado");
+        }
+        
     }
 
     private static void criarCadastro() {
