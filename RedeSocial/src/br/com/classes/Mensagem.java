@@ -5,9 +5,17 @@ public class Mensagem {
     
     private String conteudo;
     private Date dataHoraEnvio;
-    private String autor;
+    private Perfil autor;
 
-    public Mensagem(String conteudo, Date dataHoraEnvio, String autor) {
+    public Perfil getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Perfil autor) {
+        this.autor = autor;
+    }
+
+    public Mensagem(String conteudo, Date dataHoraEnvio, Perfil autor) {
         this.conteudo = conteudo;
         this.dataHoraEnvio = dataHoraEnvio;
         this.autor = autor;
@@ -29,11 +37,5 @@ public class Mensagem {
         this.dataHoraEnvio = dataHoraEnvio;
     }
 
-    public String getAutor() {
-        return autor;
-    }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
 }

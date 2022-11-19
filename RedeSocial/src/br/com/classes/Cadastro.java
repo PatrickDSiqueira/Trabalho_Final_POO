@@ -1,4 +1,5 @@
 package br.com.classes;
+
 public class Cadastro {
 
     private String idCadastro;
@@ -7,59 +8,81 @@ public class Cadastro {
     private String telefone;
     private String dataNascimento;
     private String sexo;
-    private String FKusuario;
-
-    public String getFKusuario() {
-        return FKusuario;
-    }
-
-
+    private Usuario usuario;
+    
     public Cadastro(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento,
-            String sexo, String FKusuario) {
+            String sexo, Usuario usuario) {
         this.idCadastro = idCadastro;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
-        this.FKusuario = FKusuario;
+        this.usuario = usuario;
     }
 
+    public String getIdCadastro() {
+        return idCadastro;
+    }
 
     public void setIdCadastro(String idCadastro) {
         this.idCadastro = idCadastro;
     }
 
-    public String getUsuario() {
-        return FKusuario;
-    }
-
-    public void setUsuario(String FKusuario) {
-        this.FKusuario = FKusuario;
-    }
-
-    public String getId() {
-        return idCadastro;
-    }
-    
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getSobrenome() {
         return sobrenome;
     }
 
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
     public String getTelefone() {
         return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getDataNascimento() {
         return dataNascimento;
     }
 
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
     public String getSexo() {
         return sexo;
     }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getNomeSobrenome(){
+        return this.getNome() +" "+ this.getSobrenome();
+    }
+    
+
+
+
 
 }

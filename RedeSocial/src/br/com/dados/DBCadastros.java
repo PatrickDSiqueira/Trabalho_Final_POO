@@ -26,15 +26,6 @@ public class DBCadastros {
 
         Cadastro cad = null;
         
-for (int i = 0; i < getTodosCadastro().size(); i++) {
-    if (idUsuario.equals(getTodosCadastro().get(i).getFKusuario())) {
-        cad= getTodosCadastro().get(i);
-    }
-    
-}
-            
-        
-
     return cad;
 
 }
