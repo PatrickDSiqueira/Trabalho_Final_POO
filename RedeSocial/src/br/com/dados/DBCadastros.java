@@ -30,4 +30,13 @@ public class DBCadastros {
 
 }
 
+    @Override
+    public String toString() {
+        String listaCadastros = "";
+        for (Cadastro cadastro : todosCadastro) {
+            listaCadastros += cadastro.toString() + "\n";
+        }
+        return "DBCadastros [todosCadastro= "+listaCadastros+"]";
+    }
+
 }

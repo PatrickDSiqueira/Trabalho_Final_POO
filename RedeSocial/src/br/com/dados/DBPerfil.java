@@ -15,15 +15,16 @@ public class DBPerfil {
         Perfil perfilEscolha = null;
 
         for (Perfil perfil : todosPerfis) {
+            
             if (email.equals(perfil.getUsuario().getEmail())) {
+                System.out.println(email +" testanco com esse "+perfil.getUsuario().getEmail());
                 perfilEscolha = perfil;
+            } else {
+                System.out.println("Meu parceiro o erro esta aqui");
             }
             
         }
-
-        DBPerfil.todosPerfis.get(1).getUsuario().getEmail();
-
-
+        
         return perfilEscolha;
     }
     
@@ -35,5 +36,17 @@ public class DBPerfil {
         }
 
         return listaPerfil;
+    }
+
+    @Override
+    public String toString() {
+
+        String listaPerfil = "";
+        for (Perfil perfil : todosPerfis) {
+            listaPerfil += perfil.toString() + "\n";
+        }
+
+
+        return "DBPerfil ["+listaPerfil+"]";
     }    
 }

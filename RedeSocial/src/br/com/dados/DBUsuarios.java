@@ -79,4 +79,16 @@ public class DBUsuarios {
         this.todosUsuarios.add(usuario);
     }
 
+    @Override
+    public String toString() {
+
+        String listaUsuario = "";
+        for (Usuario usuario : todosUsuarios) {
+            listaUsuario += usuario.toString() + "\n";
+        }
+
+
+        return "DBUsuarios [todosUsuarios=" + listaUsuario + "]";
+    }
+
 }

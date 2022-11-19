@@ -80,6 +80,12 @@ public class Cadastro {
     public String getNomeSobrenome(){
         return this.getNome() +" "+ this.getSobrenome();
     }
+
+    @Override
+    public String toString() {
+        return "Cadastro [idCadastro=" + idCadastro + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone="
+                + telefone + ", dataNascimento=" + dataNascimento + ", sexo=" + sexo + ", usuario=" + usuario.toString() + "]";
+    }
     
 
 

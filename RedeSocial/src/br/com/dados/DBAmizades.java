@@ -13,6 +13,7 @@ public class DBAmizades {
     public static ArrayList<Amizade> todasAmizades = new ArrayList<Amizade>();
 
     public static ArrayList<Amizade> getTodasAmizadesbyId(String idusuario) {
+
         ArrayList<Amizade> listaRetornoAmizades = new ArrayList<Amizade>();
 
         for (Amizade amizade : todasAmizades) {
@@ -24,7 +25,7 @@ public class DBAmizades {
             }
             
         }
-        return todasAmizades;
+        return listaRetornoAmizades;
     }
 
     public static  void setTodasAmizades(Amizade todosPerfis) {

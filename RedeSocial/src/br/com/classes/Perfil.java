@@ -7,32 +7,50 @@ import br.com.dados.DBAmizades;
 
 public class Perfil extends Cadastro {
 
+    public String id;
     private String biografia;
     private String statusRelacionamento;
-    // private ArrayList<Amizade> listaAmizades = new ArrayList<Amizade>();
-    public int perfil2;
+    private ArrayList<String> listaIdAmizades = new ArrayList<String>();
+
+    public ArrayList<String> getListaIdAmizades() {
+        return listaIdAmizades;
+    }
+
+
+
+    public void setListaIdAmizades(String IdAmizade) {
+        this.listaIdAmizades.add(IdAmizade);
+    }
+
+
+
+    public Perfil(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento, String sexo,
+            Usuario usuario, String id, String biografia, String statusRelacionamento) {
+        super(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, usuario);
+        this.id = super.getIdCadastro();
+        this.biografia = biografia;
+        this.statusRelacionamento = statusRelacionamento;
+    }
+
+
 
     public Perfil(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento, String sexo,
             Usuario usuario) {
         super(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, usuario);
-        // TODO Auto-generated constructor stub
+        this.id = super.getIdCadastro();
     }
 
-    public Perfil(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento, String sexo,
-            Usuario usuario, String biografia, String statusRelacionamento) {
-        super(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, usuario);
-        this.biografia = biografia;
-        this.statusRelacionamento = statusRelacionamento;
-        // this.listaAmizades = listaAmizades;
-    }
+
 
     public Perfil(Cadastro cadastro) {
         super(cadastro.getIdCadastro(), cadastro.getNome(), cadastro.getSobrenome(), cadastro.getTelefone(), cadastro.getDataNascimento(), cadastro.getSexo(), cadastro.getUsuario());
+        this.id = super.getIdCadastro();
     }
 
 
-    public String consultaAmigos(){
-        String listaAmigos ="";
+    public String mostrarTodosAmigos(){
+        
+        String listaTodosAmigos ="";
 
         
         // for (int i = 0; i < this.listaAmizades.size(); i++) {
@@ -41,10 +59,10 @@ public class Perfil extends Cadastro {
             // }
             ArrayList<Amizade> listAmigos =  DBAmizades.getTodasAmizadesbyId(super.getIdCadastro());
         for (int i = 0; i < listAmigos.size(); i++) {
-            listaAmigos += i + listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNome();
+            listaTodosAmigos += i + listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNome();
         }
 
-        return listaAmigos;
+        return listaTodosAmigos;
     }
 
     public void criarAmizade(Perfil perfilAmigo, Perfil logado) {
@@ -56,10 +74,15 @@ public class Perfil extends Cadastro {
 
         DBAmizades.setTodasAmizades(amizade);
 
+        perfilAmigo.setListaIdAmizades(amizade.getId());
+        this.setListaIdAmizades(amizade.getId());
+    }
 
 
 
-
-
+    @Override
+    public String toString() {
+        return "Perfil [id=" + id + ", biografia=" + biografia + ", statusRelacionamento=" + statusRelacionamento
+                + ", listaIdAmizades=" + listaIdAmizades + "]";
     }
 }

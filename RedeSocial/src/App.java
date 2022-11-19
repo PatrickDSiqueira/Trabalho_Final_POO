@@ -4,7 +4,6 @@ import java.util.Scanner;
 import br.com.classes.Cadastro;
 import br.com.classes.Perfil;
 import br.com.classes.Usuario;
-import br.com.dados.DBAmizades;
 import br.com.dados.DBCadastros;
 import br.com.dados.DBPerfil;
 import br.com.dados.DBUsuarios;
@@ -144,7 +143,7 @@ public class App {
                     break;
                 case "2":
                     // consultar Amigos
-                    System.out.println(perfilLogado.consultaAmigos());
+                    System.out.println(perfilLogado.mostrarTodosAmigos());
 
                     break;
                 // Paulo refatora esse case  !!!
@@ -199,8 +198,8 @@ public class App {
                     String email = ler.nextLine();
 
                     if (dbUsuarios.checkEmailCadastrado(email)) {
-                        Usuario user = dbUsuarios.getUsuariobyEmail(email);
-                        perfilLogado.setListaAmigos(user);
+                        Perfil perfil = dbPerfis.getPErfilByEmail(email);
+                        perfilLogado.criarAmizade(perfil, perfilLogado);
                         System.out.println("Amigo cadastrado");
                     } else {
                         System.out.println("Usuario nao encontrado");
@@ -247,8 +246,8 @@ public class App {
 
         Cadastro cadastro = new Cadastro(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, usuario);
 
+        dbPerfis.setTodosPerfis(new Perfil(cadastro));
         dbCadastros.setTodosCadastro(cadastro);
-
         dbUsuarios.setTodosUsuarios(usuario);
 
         System.out.println("Cadastro realizado");
@@ -274,6 +273,7 @@ public class App {
 
         String idUsuario = Integer.toString(aleatorio.nextInt(100));
         usuario = new Usuario(idUsuario, email, senha);
+
 
         return usuario;
     }
