@@ -37,5 +37,10 @@ public class Mensagem {
         this.dataHoraEnvio = dataHoraEnvio;
     }
 
+    @Override
+    public String toString() {
+        return " - - -  [ "+autor.getNome()+" ] " + conteudo + "\n\t" + dataHoraEnvio + "\n\t";
+    }
+
 
 }

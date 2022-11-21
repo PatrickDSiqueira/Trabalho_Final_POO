@@ -16,13 +16,9 @@ public class Perfil extends Cadastro {
         return listaIdAmizades;
     }
 
-
-
     public void setListaIdAmizades(String IdAmizade) {
         this.listaIdAmizades.add(IdAmizade);
     }
-
-
 
     public Perfil(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento, String sexo,
             Usuario usuario, String id, String biografia, String statusRelacionamento) {
@@ -32,34 +28,25 @@ public class Perfil extends Cadastro {
         this.statusRelacionamento = statusRelacionamento;
     }
 
-
-
     public Perfil(String idCadastro, String nome, String sobrenome, String telefone, String dataNascimento, String sexo,
             Usuario usuario) {
         super(idCadastro, nome, sobrenome, telefone, dataNascimento, sexo, usuario);
         this.id = super.getIdCadastro();
     }
 
-
-
     public Perfil(Cadastro cadastro) {
-        super(cadastro.getIdCadastro(), cadastro.getNome(), cadastro.getSobrenome(), cadastro.getTelefone(), cadastro.getDataNascimento(), cadastro.getSexo(), cadastro.getUsuario());
+        super(cadastro.getIdCadastro(), cadastro.getNome(), cadastro.getSobrenome(), cadastro.getTelefone(),
+                cadastro.getDataNascimento(), cadastro.getSexo(), cadastro.getUsuario());
         this.id = super.getIdCadastro();
     }
 
+    public String mostrarTodosAmigos() {
 
-    public String mostrarTodosAmigos(){
+        String listaTodosAmigos = "";
         
-        String listaTodosAmigos ="";
-
-        
-        // for (int i = 0; i < this.listaAmizades.size(); i++) {
-            
-            //     listaAmigos += i + this.listaAmizades.get(i).buscarAmigo(super.getIdCadastro()).getNome();
-            // }
-            ArrayList<Amizade> listAmigos =  DBAmizades.getTodasAmizadesbyId(super.getIdCadastro());
+        ArrayList<Amizade> listAmigos = DBAmizades.getTodasAmizadesbyIdPerfil(super.getIdCadastro());
         for (int i = 0; i < listAmigos.size(); i++) {
-            listaTodosAmigos += i + listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNome();
+            listaTodosAmigos += "\t" +  i +" - "+ listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNomeSobrenome() + "\n";
         }
 
         return listaTodosAmigos;
@@ -77,8 +64,6 @@ public class Perfil extends Cadastro {
         perfilAmigo.setListaIdAmizades(amizade.getId());
         this.setListaIdAmizades(amizade.getId());
     }
-
-
 
     @Override
     public String toString() {

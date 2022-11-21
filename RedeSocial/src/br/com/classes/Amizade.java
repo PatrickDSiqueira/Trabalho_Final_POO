@@ -1,19 +1,21 @@
 package br.com.classes;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Amizade {
     private String id;
     private Perfil[] perfis = new Perfil[2];
     private ArrayList<Mensagem> chat = new ArrayList<Mensagem>();
 
-    public Amizade(String id, Perfil[] perfis, ArrayList<Mensagem> chat) {
+    public Amizade(String id, Perfil[] perfis) {
         this.id = id;
         this.perfis = perfis;
-        this.chat = chat;
+        this.chat = new ArrayList<Mensagem>();
     }
 
     public Amizade() {
+        this.chat = new ArrayList<Mensagem>();
     }
 
     public Perfil buscarAmigo(String idUsuarioLogado) {
@@ -47,11 +49,18 @@ public class Amizade {
     }
 
     public ArrayList<Mensagem> getChat() {
+        for (Mensagem mensagem : this.chat) {
+            System.out.println(mensagem.toString());
+            
+        }
         return chat;
     }
 
-    public void setChat(ArrayList<Mensagem> chat) {
-        this.chat = chat;
+
+
+    public void enviarMensagem(String conteudo, Perfil autor ) {
+        Mensagem msg = new Mensagem(conteudo, new Date(), autor);
+        getChat().add(msg);
     }
 
 }

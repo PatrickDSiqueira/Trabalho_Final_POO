@@ -11,28 +11,28 @@ public class DBPerfil {
         DBPerfil.todosPerfis.add(perfil);
     }
 
-    public Perfil getPErfilByEmail(String email){
+    public Perfil getPErfilByEmail(String email) {
         Perfil perfilEscolha = null;
 
         for (Perfil perfil : todosPerfis) {
-            
+
             if (email.equals(perfil.getUsuario().getEmail())) {
-                System.out.println(email +" testanco com esse "+perfil.getUsuario().getEmail());
+                System.out.println(email + " testanco com esse " + perfil.getUsuario().getEmail());
                 perfilEscolha = perfil;
             } else {
                 System.out.println("Meu parceiro o erro esta aqui");
             }
-            
+
         }
-        
+
         return perfilEscolha;
     }
-    
-    public String mostrarTodosPerfil(){
+
+    public String mostrarTodosPerfil() {
         String listaPerfil = "";
 
         for (int i = 0; i < DBPerfil.todosPerfis.size(); i++) {
-            listaPerfil += i +" "+ DBPerfil.todosPerfis.get(i).getNomeSobrenome();
+            listaPerfil += "\t" + i + " " + DBPerfil.todosPerfis.get(i).getNomeSobrenome() + "\n";
         }
 
         return listaPerfil;
@@ -46,7 +46,6 @@ public class DBPerfil {
             listaPerfil += perfil.toString() + "\n";
         }
 
-
-        return "DBPerfil ["+listaPerfil+"]";
-    }    
+        return "DBPerfil [" + listaPerfil + "]";
+    }
 }
