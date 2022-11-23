@@ -43,10 +43,11 @@ public class Perfil extends Cadastro {
     public String mostrarTodosAmigos() {
 
         String listaTodosAmigos = "";
-        
+
         ArrayList<Amizade> listAmigos = DBAmizades.getTodasAmizadesbyIdPerfil(super.getIdCadastro());
         for (int i = 0; i < listAmigos.size(); i++) {
-            listaTodosAmigos += "\t" +  i +" - "+ listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNomeSobrenome() + "\n";
+            listaTodosAmigos += "\t" + i + " - "
+                    + listAmigos.get(i).buscarAmigo(super.getIdCadastro()).getNomeSobrenome() + "\n";
         }
 
         return listaTodosAmigos;
@@ -69,5 +70,21 @@ public class Perfil extends Cadastro {
     public String toString() {
         return "Perfil [id=" + id + ", biografia=" + biografia + ", statusRelacionamento=" + statusRelacionamento
                 + ", listaIdAmizades=" + listaIdAmizades + "]";
+    }
+
+    public void desfazerAmizade(String idAmizade){
+
+        // remover do perfil 
+        Amizade amizade = DBAmizades.getAmizadebyIdAmizade(idAmizade);
+        
+        for (Perfil perfil : amizade.getPerfis()) {
+                perfil.listaIdAmizades.remove(idAmizade);
+        }
+
+        // remover do Array
+        DBAmizades.todasAmizades.remove(DBAmizades.getAmizadebyIdAmizade(idAmizade));
+
+        // alerta
+        System.out.println("feito");
     }
 }

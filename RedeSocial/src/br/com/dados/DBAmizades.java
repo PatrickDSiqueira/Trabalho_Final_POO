@@ -12,6 +12,10 @@ public class DBAmizades {
 
     public static ArrayList<Amizade> todasAmizades = new ArrayList<Amizade>();
 
+    public static ArrayList<Amizade> getTodasAmizades() {
+        return todasAmizades;
+    }
+
     public static ArrayList<Amizade> getTodasAmizadesbyIdPerfil(String idusuario) {
 
         ArrayList<Amizade> listaRetornoAmizades = new ArrayList<Amizade>();
@@ -28,17 +32,17 @@ public class DBAmizades {
         return listaRetornoAmizades;
     }
 
-    public static ArrayList<Amizade> getTodasAmizadesbyIdAmizade(String idAmizade) {
+    public static Amizade getAmizadebyIdAmizade(String idAmizade) {
 
-        ArrayList<Amizade> listaRetornoAmizades = new ArrayList<Amizade>();
+        Amizade retornoAmizade = null;
 
         for (Amizade amizade : todasAmizades) {
    
                 if (amizade.getId().equals(idAmizade)) {
-                        listaRetornoAmizades.add(amizade);
+                        retornoAmizade = amizade;
                 }
         }
-        return listaRetornoAmizades;
+        return retornoAmizade;
     }
 
     public static  void setTodasAmizades(Amizade amizade) {

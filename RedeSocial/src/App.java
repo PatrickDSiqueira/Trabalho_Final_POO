@@ -158,20 +158,21 @@ public class App {
 
                     break;
                 // Paulo refatora esse case !!!
-                // case "3":
-                // System.out.println(perfilLogado.consultaAmigos());
-                // System.out.println("Qual amigo vc deseja excluir");
-                // int indexAmigo = ler.nextInt();
-                // ler = new Scanner(System.in);
-                // if (indexAmigo <=
-                // DBAmizades.getTodasAmizadesbyId(perfilLogado.getIdCadastro()).size()) {
+                case "3":
+                System.out.println(perfilLogado.mostrarTodosAmigos());
+                System.out.println("Qual amigo vc deseja excluir  - - - > ");
+                int indexAmigo = ler.nextInt();
+                ler = new Scanner(System.in);
+                
+                if (indexAmigo <= DBAmizades.getTodasAmizadesbyIdPerfil(perfilLogado.getIdCadastro()).size()) {
                 // perfilLogado.excluirAmigos(
                 // dbUsuarios.getUsuariobyID(perfilLogado.getListaAmigos().get(indexAmigo).getId()));
-                // } else {
-                // System.out.println("opcao invalida");
-                // }
+                perfilLogado.desfazerAmizade(perfilLogado.getListaIdAmizades().get(indexAmigo));
+                } else {
+                System.out.println("opcao invalida");
+                }
 
-                // break;
+                break;
 
                 case "4":
                     System.out.println("Qual chat vc quer entrar ?");
