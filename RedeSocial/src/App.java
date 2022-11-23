@@ -2,9 +2,11 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.*;
+import java.awt.*;
+
 import br.com.classes.Amizade;
 import br.com.classes.Cadastro;
-import br.com.classes.Mensagem;
 import br.com.classes.Perfil;
 import br.com.classes.Usuario;
 import br.com.dados.DBAmizades;
@@ -26,31 +28,42 @@ public class App {
     static Perfil perfilLogado = null;
 
     public static void main(String[] args) throws InterruptedException, IOException {
+        MainFrame mainframe = new MainFrame();
+        mainframe.initialize();
 
         setarUsuariosTeste();
 
         String opcao = "";
 
         do {
+            JPanel jpMenuInicio = new JPanel();
+            jpMenuInicio.setLayout(new GridLayout(4, 1, 10, 10));
+            jpMenuInicio.setOpaque(false);
+
+            JLabel btn = new JLabel();
+            JButton btnCriarConta = new JButton();
+            JButton btnLogar = new JButton();
+            JButton btnEncerrarPrograma = new JButton();
+
             System.out.println("Digite uma opção\n 1-criar conta\n 2- Logar\n 0- Encerrar Programa \n --> ");
             opcao = ler.nextLine();
             ler = new Scanner(System.in);
             Limpa.Console();
 
             switch (opcao) {
-                case "1":
+                case "1": // Criar conta
                     criarCadastro();
 
                     break;
-                case "2":
+                case "2": // Logar
                     logar();
                     break;
 
-                case "0":
+                case "0": // Encerrar Programa
                     System.out.println("Programa encerrando....");
                     break;
 
-                default:
+                default: // Opção inválida
                     System.out.println("opcao invalida");
                     break;
             }
@@ -159,20 +172,20 @@ public class App {
                     break;
                 // Paulo refatora esse case !!!
                 case "3":
-                System.out.println(perfilLogado.mostrarTodosAmigos());
-                System.out.println("Qual amigo vc deseja excluir  - - - > ");
-                int indexAmigo = ler.nextInt();
-                ler = new Scanner(System.in);
-                
-                if (indexAmigo <= DBAmizades.getTodasAmizadesbyIdPerfil(perfilLogado.getIdCadastro()).size()) {
-                // perfilLogado.excluirAmigos(
-                // dbUsuarios.getUsuariobyID(perfilLogado.getListaAmigos().get(indexAmigo).getId()));
-                perfilLogado.desfazerAmizade(perfilLogado.getListaIdAmizades().get(indexAmigo));
-                } else {
-                System.out.println("opcao invalida");
-                }
+                    System.out.println(perfilLogado.mostrarTodosAmigos());
+                    System.out.println("Qual amigo vc deseja excluir  - - - > ");
+                    int indexAmigo = ler.nextInt();
+                    ler = new Scanner(System.in);
 
-                break;
+                    if (indexAmigo <= DBAmizades.getTodasAmizadesbyIdPerfil(perfilLogado.getIdCadastro()).size()) {
+                        // perfilLogado.excluirAmigos(
+                        // dbUsuarios.getUsuariobyID(perfilLogado.getListaAmigos().get(indexAmigo).getId()));
+                        perfilLogado.desfazerAmizade(perfilLogado.getListaIdAmizades().get(indexAmigo));
+                    } else {
+                        System.out.println("opcao invalida");
+                    }
+
+                    break;
 
                 case "4":
                     System.out.println("Qual chat vc quer entrar ?");
@@ -189,7 +202,7 @@ public class App {
 
                         for (int i = 0; i < amizadeSelecionada.getChat().size(); i++) {
                             System.out.println(amizadeSelecionada.getChat().get(i));
-                            
+
                         }
 
                         System.out.print("msg -> ");
@@ -198,9 +211,8 @@ public class App {
 
                         if (!msg.equals("0")) {
                             amizadeSelecionada.enviarMensagem(msg, perfilLogado);
-                            
-                        }
 
+                        }
 
                     } while ((!msg.equals("0")));
 
