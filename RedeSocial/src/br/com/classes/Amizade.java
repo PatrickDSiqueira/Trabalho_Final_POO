@@ -49,10 +49,6 @@ public class Amizade {
     }
 
     public ArrayList<Mensagem> getChat() {
-        for (Mensagem mensagem : this.chat) {
-            System.out.println(mensagem.toString());
-            
-        }
         return chat;
     }
 

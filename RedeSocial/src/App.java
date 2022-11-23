@@ -186,11 +186,10 @@ public class App {
                     do {
                         Limpa.Console();
 
-                        for (Mensagem mensagem : amizadeSelecionada.getChat()) {
-
-                            System.out.println(mensagem);
+                        for (int i = 0; i < amizadeSelecionada.getChat().size(); i++) {
+                            System.out.println(amizadeSelecionada.getChat().get(i));
+                            
                         }
-                        ;
 
                         System.out.print("msg -> ");
                         msg = ler.nextLine();
