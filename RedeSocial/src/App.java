@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.*;
-import java.awt.*;
 
 import br.com.classes.Amizade;
 import br.com.classes.Cadastro;
@@ -15,9 +13,6 @@ import br.com.dados.DBPerfil;
 import br.com.dados.DBUsuarios;
 import br.com.limpaConsole.Limpa;
 
-/**
- * App
- */
 public class App {
 
     static DBCadastros dbCadastros = new DBCadastros();
@@ -28,24 +23,13 @@ public class App {
     static Perfil perfilLogado = null;
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        MainFrame mainframe = new MainFrame();
-        mainframe.initialize();
 
         setarUsuariosTeste();
 
         String opcao = "";
 
         do {
-            JPanel jpMenuInicio = new JPanel();
-            jpMenuInicio.setLayout(new GridLayout(4, 1, 10, 10));
-            jpMenuInicio.setOpaque(false);
-
-            JLabel btn = new JLabel();
-            JButton btnCriarConta = new JButton();
-            JButton btnLogar = new JButton();
-            JButton btnEncerrarPrograma = new JButton();
-
-            System.out.println("Digite uma opção\n 1-criar conta\n 2- Logar\n 0- Encerrar Programa \n --> ");
+            System.out.print("1-criar conta\n 2- Logar\n 0- Encerrar Programa \n\n  --> ");
             opcao = ler.nextLine();
             ler = new Scanner(System.in);
             Limpa.Console();
