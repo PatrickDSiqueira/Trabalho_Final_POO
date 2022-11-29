@@ -16,7 +16,7 @@ public class DBPerfil {
 
         for (Perfil perfil : todosPerfis) {
 
-            if (email.equals(perfil.getUsuario().getEmail())) {
+            if (email.equalsIgnoreCase(perfil.getUsuario().getEmail())) {
                 System.out.println(email + " testanco com esse " + perfil.getUsuario().getEmail());
                 perfilEscolha = perfil;
             } else {

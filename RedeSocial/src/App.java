@@ -15,9 +15,8 @@ import br.com.dados.DBPerfil;
 import br.com.dados.DBUsuarios;
 import br.com.limpaConsole.Limpa;
 
+// App.
 
- // App.
- 
 public class App {
 
     static DBCadastros dbCadastros = new DBCadastros();
@@ -34,17 +33,18 @@ public class App {
         String opcao = "";
 
         do {
-            System.out.println("\n\nDigite uma opção que deseja realizar:\n\n 1 - Criar conta\n 2 - Logar\n 0 - Encerrar Programa \n --> ");
+            System.out.println(
+                    "\n\nDigite uma opção que deseja realizar:\n\n 1 - Criar conta\n 2 - Logar\n 0 - Encerrar Programa \n --> ");
             opcao = ler.nextLine();
             ler = new Scanner(System.in);
             Limpa.Console();
 
             switch (opcao) {
-                case "1": 
+                case "1":
                     criarCadastro();
 
                     break;
-                case "2": 
+                case "2":
                     logar();
                     break;
 
@@ -121,19 +121,17 @@ public class App {
         System.out.println("\nSenha : ");
         String senha = ler.nextLine();
         ler = new Scanner(System.in);
-    
 
-            if (senha.equals(dbUsuarios.getUsuariobyEmail(email).getSenha())) {
+        if (senha.equals(dbUsuarios.getUsuariobyEmail(email).getSenha())) {
 
-                perfilLogado = dbPerfis.getPErfilByEmail(email);
-                System.out.println("\nUsuário logado \n");
-                programaLogado();
-            } else {
-                System.out.println("Senha incorreta.");
-            }
+            perfilLogado = dbPerfis.getPErfilByEmail(email);
+            System.out.println("\nUsuário logado \n");
+            programaLogado();
+        } else {
+            System.out.println("Senha incorreta.");
+        }
     }
 
-    
     private static void programaLogado() throws InterruptedException, IOException {
         String opcao = "";
         String menu = " 1 - Visualizar todos os usuários \n 2 - Consultar meus amigos \n 3 - Excluir amigos \n 4 - Chat \n 0 - Logout. \n --> ";
@@ -150,11 +148,11 @@ public class App {
 
                     break;
                 case "2":
-                    
+
                     System.out.println(perfilLogado.mostrarTodosAmigos());
 
                     break;
-                
+
                 case "3":
                     System.out.println(perfilLogado.mostrarTodosAmigos());
                     System.out.println("Qual amigo vc deseja excluir \n --> ");
@@ -170,16 +168,18 @@ public class App {
                     break;
 
                 case "4":
-                   
-                	System.out.println("Em qual chat deseja entrar ? (Obs.: envie em msg '0' para sair do chat) \n -->");
+
+                    System.out
+                            .println("Em qual chat deseja entrar ? (Obs.: envie em msg '0' para sair do chat) \n -->");
 
                     System.out.println(perfilLogado.mostrarTodosAmigos());
-                   
+
                     int index = ler.nextInt();
                     ler = new Scanner(System.in);
                     Amizade amizadeSelecionada = DBAmizades.getTodasAmizadesbyIdPerfil(perfilLogado.getIdCadastro())
                             .get(index);
                     String msg = "";
+                    
                     do {
                         Limpa.Console();
 
@@ -267,25 +267,20 @@ public class App {
         String idCadastro = Integer.toString(aleatorio.nextInt(100));
 
         System.out.println("\nDigite o seu nome : ");
-         String nome = ler.nextLine();
+        String nome = ler.nextLine();
         ler = new Scanner(System.in);
-        
-        
+
         System.out.println("\nDigite o seu Sobrenome : ");
-         String sobrenome = ler.nextLine();
-       
+        String sobrenome = ler.nextLine();
 
         System.out.println("\nDigite o seu telefone : ");
-         String telefone = ler.nextLine();
-      
+        String telefone = ler.nextLine();
 
         System.out.println("\nDigite a sua data de nascimento : ");
-         String dataNascimento = ler.nextLine();
-        
+        String dataNascimento = ler.nextLine();
 
         System.out.println("\nDigite o seu sexo : ");
-         String sexo = ler.nextLine();
-      
+        String sexo = ler.nextLine();
 
         Usuario usuario = criarUsuario();
 
@@ -313,12 +308,12 @@ public class App {
         } while (dbUsuarios.checkEmailCadastrado(email));
 
         System.out.println("\nDigite o sua senha : ");
-         String senha = ler.nextLine();
-       
+        String senha = ler.nextLine();
 
         String idUsuario = Integer.toString(aleatorio.nextInt(100));
         usuario = new Usuario(idUsuario, email, senha);
 
         return usuario;
     }
+
 }
