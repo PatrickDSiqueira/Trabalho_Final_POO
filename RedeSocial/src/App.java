@@ -8,6 +8,7 @@ import java.awt.*;
 import br.com.classes.Amizade;
 import br.com.classes.Cadastro;
 import br.com.classes.Perfil;
+import br.com.classes.StatusMEnsagem;
 import br.com.classes.Usuario;
 import br.com.dados.DBAmizades;
 import br.com.dados.DBCadastros;
@@ -31,9 +32,10 @@ public class App {
         setarUsuariosTeste();
 
         String opcao = "";
+        Limpa.Console();
 
         do {
-            System.out.println(
+            System.out.print(
                     "\n\nDigite uma opção que deseja realizar:\n\n 1 - Criar conta\n 2 - Logar\n 0 - Encerrar Programa \n --> ");
             opcao = ler.nextLine();
             ler = new Scanner(System.in);
@@ -80,7 +82,7 @@ public class App {
         dbUsuarios.setTodosUsuarios(usuario);
 
         idUsuario = Integer.toString(aleatorio.nextInt(100));
-        usuario = new Usuario(idUsuario, "teste@gmail.com", "123");
+        usuario = new Usuario(idUsuario, "P", "123");
 
         cadastro = new Cadastro(Integer.toString(aleatorio.nextInt(100)),
                 "Paulo",
@@ -96,7 +98,7 @@ public class App {
         dbUsuarios.setTodosUsuarios(usuario);
 
         idUsuario = Integer.toString(aleatorio.nextInt(100));
-        usuario = new Usuario(idUsuario, "teste@gmail.com", "123");
+        usuario = new Usuario(idUsuario, "m", "123");
 
         cadastro = new Cadastro(Integer.toString(aleatorio.nextInt(100)),
                 "Marlon",
@@ -176,6 +178,7 @@ public class App {
 
                     int index = ler.nextInt();
                     ler = new Scanner(System.in);
+
                     Amizade amizadeSelecionada = DBAmizades.getTodasAmizadesbyIdPerfil(perfilLogado.getIdCadastro())
                             .get(index);
                     String msg = "";
@@ -184,6 +187,12 @@ public class App {
                         Limpa.Console();
 
                         for (int i = 0; i < amizadeSelecionada.getChat().size(); i++) {
+                            
+                            if (amizadeSelecionada.getChat().get(i).getStatus() == StatusMEnsagem.Enviado) {
+                                if (amizadeSelecionada.getChat().get(i).getAutor().id != perfilLogado.id) {
+                                    amizadeSelecionada.getChat().get(i).checkVisualizacao();
+                                }
+                            }
                             System.out.println(amizadeSelecionada.getChat().get(i));
 
                         }
@@ -217,7 +226,7 @@ public class App {
     private static void criarAmizade() {
         String opcao = "";
         do {
-            System.out.println(
+            System.out.print(
                     "\n 1 - Visualizar todos os usuarios disponíveis \n 2 - Digitar email do amigo \n 0 - voltar ao menu anterior \n -->");
             opcao = ler.nextLine();
             ler = new Scanner(System.in);
